@@ -1,0 +1,83 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+
+<head>
+  <title>Flipkart Price Tracker</title>
+  <style>
+  body {
+    font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+    font-size: 100%;
+    min-width: 500px;
+  }
+  
+  .form-control {
+    margin-bottom: 15px;
+  }
+  
+  .img-responsive {
+    margin: 0 auto;
+  }
+  </style>
+  <script src="./js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="./js/moment.min.js"></script>
+<script src="./js/charts.js"></script>
+
+  <!-- <script src="bower_componets/bootstrap/dist/js/bootstrap.min.js"></script> -->
+  <script src="./js/index.js"></script>
+  <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+</head>
+
+<body>
+  <div class="container">
+    <!-- Setting the header -->
+    <div class="row">
+        <div class="col-sm-4">
+        
+        <p style="padding-top: 12px;padding-bottom: -6px">CrawlVid</p>
+     <hr> 
+            </div>
+    </div>
+    <!-- Form for setting the product price range for getting notification -->
+    <div class="well">
+        <center>
+        <button class="btn btn-primary" id="submit" name="Analyise Video">Analyse</button>
+        <img src="./images/loading.gif" id="loading" width=auto height="100px">
+        <form id="queryform">
+          <input type="text" id="searchtext" placeholder="Query">
+          <button type="button" id="findtext">Search</button>
+            <button type="button" id="insights">Insights</button>
+        </form>
+            
+            <hr>
+        <div id="buttons" class="buttonClass">
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+      </center>
+     
+    </div>
+    <!-- Displaying the product information -->
+    <!-- <table>
+      <tr>
+        <td><img id="img" src="" height="200" width="150"></img>
+        </td>
+        <td style="padding-left:50px;">
+          <p><b>Product Name  : </b><span id="name"></span></p>
+          <p><b>Current Price : </b><span id="current_price"></span></p>
+        </td>
+      </tr>
+    </table> -->
+</body>
+
+</html>
