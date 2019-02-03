@@ -74,14 +74,15 @@ function checkTranscribeResult(id){
     }
   });
 }
-var transcript,sentiment,wordsPos;
+var transcript,sentiment,wordsPos,summary;
 function fetchTranscript(id){
   $.ajax({
     type: 'GET',
-    url: serverAddress + `/get-transcripts?id=${id}`,
+    url: serverAddress + `/generate-summary?id=${id}`,
     success: function(finalJson) {
       transcript = finalJson["status"]["transcript"]
       sentiment = finalJson["status"]["sentiment"]
+      summary  = finalJson["status"]["summary"]["output"]
       wordsPos=finalJson["status"]["json"]
       $('#loading').remove();
       $('#queryform').show();
@@ -110,6 +111,11 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("error downloading");
       }
     });
+  });
+  $('#summarise').on('click',function(){
+    $('#sumpara').toggle();
+    var ctx  = document.getElementById("sumpara");
+    ctx.innerHTML = summary;
   });
   $('#insights').on('click',function(){
       var ctx = document.getElementById("myChart");
@@ -154,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var buttonDiv = document.getElementById("buttons"); 
     while (buttonDiv.firstChild) {
       buttonDiv.removeChild(buttonDiv.firstChild);
-  }
+    }
     indices.forEach(function(time) {
      var button = document.createElement("button");
      button.style.margin="5px";
@@ -178,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $('#loading').hide();
     $('#queryform').hide();
     $('#myChart').hide();
+    $('#sumpara').hide();
      getCurrentTabUrl(function(url) {
       if ($.urlParam('v', url) != null) {
         console.log('found '+$.urlParam('v', url) )
