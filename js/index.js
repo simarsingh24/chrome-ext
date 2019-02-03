@@ -6,7 +6,7 @@
  *   is found.
  */
 
-const serverAddress = " https://rd6urzb354.execute-api.us-east-1.amazonaws.com/beta";
+const serverAddress = "https://rd6urzb354.execute-api.us-east-1.amazonaws.com/beta";
 vid_id="";
 var tab;
 
@@ -146,7 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
   });
+
   $('#findtext').on('click',function(){
+   
     search =$('#searchtext').val();
     indices = getWordTimes(wordsPos,search);
     var buttonDiv = document.getElementById("buttons"); 
@@ -155,12 +157,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
     indices.forEach(function(time) {
      var button = document.createElement("button");
-    button.style.margin="5px";
+     button.style.margin="5px";
        button.classList.add("btn");
         button.classList.add("btn-primary");
         button.style.width="100px";
         button.onclick = function(){
-         chrome.tabs.update({url:"https://www.youtube.com/watch?v=ZiDfZLJZTGU&t="+Math.trunc(time)+'s'})
+          chrome.tabs.update({url: tab.url})
+          console.log("url is"+tab.url);
+         chrome.tabs.update({url:tab.url+"&t="+Math.trunc(time)+'s'})
          console.log('clicked '+time);
      };
     
